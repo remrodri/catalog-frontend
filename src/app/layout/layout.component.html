@@ -1,0 +1,34 @@
+<div class="flex flex-col min-h-screen md:flex-col">
+  <header class="bg-blue-600 text-white p-4 w-full flex justify-between items-center">
+    <h1 class="text-2xl">My Application</h1>
+    <button class="md:hidden" (click)="toggleMenu()">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
+  </header>
+  <!-- Mobile Navigation Popup -->
+  <div *ngIf="menuOpen" class="fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden" (click)="toggleMenu()">
+    <div class="bg-white p-4 w-60 h-full shadow-lg" (click)="$event.stopPropagation()">
+      <nav class="flex flex-col space-y-4">
+        <a routerLink="/" routerLinkActive="active" class="hover:underline" (click)="toggleMenu()">Home</a>
+        <a routerLink="/about" routerLinkActive="active" class="hover:underline" (click)="toggleMenu()">About</a>
+        <a routerLink="/services" routerLinkActive="active" class="hover:underline" (click)="toggleMenu()">Services</a>
+      </nav>
+    </div>
+  </div>
+  <!-- Desktop Navigation Menu -->
+  <div class="flex flex-1">
+    <aside class="hidden bg-gray-200 p-4 w-full md:w-60 md:flex md:flex-col md:space-y-4">
+      <a routerLink="/" routerLinkActive="active" class="hover:underline">Home</a>
+      <a routerLink="/about" routerLinkActive="active" class="hover:underline">About</a>
+      <a routerLink="/services" routerLinkActive="active" class="hover:underline">Services</a>
+    </aside>
+    <main class="flex-1 p-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+  <footer class="bg-gray-200 text-center p-4 w-full">
+    <p>&copy; 2023 My Application</p>
+  </footer>
+</div>
